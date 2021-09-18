@@ -54,7 +54,9 @@ public class Collection {
 	}
 	
 	public void print() { // display the list without specifying the order
-		
+		for (Album album:albums) {
+			System.out.print(album.toString());
+		}
 	}
 	
 	public void printByReleaseDate() {
