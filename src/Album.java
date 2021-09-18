@@ -15,5 +15,15 @@ public class Album {
 	public String toString() {
 		
 	}
+	
+	public boolean getAvailability() {
+		return isAvailable;
+	}
+	public void changeAvailability() {
+		if(isAvailable==true)
+			isAvailable=false;
+		else
+			isAvailable=true;
+	}
 }
 
