@@ -1,13 +1,9 @@
-import java.util.Calender;
+import java.util.Calender
 public class Date implements Comparable<Date>{
 private int year;
 private int month;
 private int day;
 
-public static final int QUADRENNIAL = 4;
-public static final int CENTENNIAL = 100;
-public static final int QUATERCENTENNIAL = 400;
-public static final int THE_EIGHTYS = 1980;
 
 public Date(String date) { //take "mm/dd/yyyy" and create a Date object
 	String[] values = date.split("/");
@@ -27,6 +23,10 @@ public Date() { //create an object with today's date ( see Calendar class)
 }
 
 public boolean isValid() {
+	public static final int QUADRENNIAL = 4;
+	public static final int CENTENNIAL = 100;
+	public static final int QUATERCENTENNIAL = 400;
+	public static final int THE_EIGHTYS = 1980;
 
 	if((day >  31 && month == 1 || 3 || 5 || 7 || 8 || 10 || 12) || (day > 30 && month = 4 || 6 || 9 || 11)){
 		return false;
