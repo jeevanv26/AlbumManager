@@ -3,6 +3,8 @@ public class Collection {
 
 	private static final int NOT_FOUND = -1;
 	private Album[] albums;
+	private Album[] albumsR;
+	private Album[] albumsG;
 	private int numAlbums; // number of albums currently in the collection
 	
 	private int find(Album album) { // find the album index, or return NOT_FOUND
@@ -23,8 +25,10 @@ public class Collection {
 	}
 	
 	public boolean add(Album album) {
+		if(find(album)!=NOT_FOUND)
+			return false;
 		if(albums.length==numAlbums)
-		grow();
+			grow();
 		for(int x=0; x<albums.length; x++) {
 			if(albums[x]==null)
 				albums[x]=album;
@@ -35,6 +39,8 @@ public class Collection {
 	
 	public boolean remove(Album album) {
 		int index=find(album);
+		if(index==NOT_FOUND)
+			return false;
 		for(int x=index; x<albums.length-2; x++) {
 			albums[x]=albums[x+1];
 		}
@@ -68,5 +74,20 @@ public class Collection {
 		
 	}
 	
+	public void sortByReleaseDate() {
+		
+	}
+	
+	public void sortByGenre() {
+		
+	}
+	
+	public Album[] getCollection() {
+		return albums;
+	}
+	
+	public int getNumAlbums() {
+		return numAlbums;
+	}
 	
 }
