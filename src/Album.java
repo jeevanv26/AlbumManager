@@ -10,7 +10,7 @@ public class Album {
 	private Date releaseDate;
 	private boolean isAvailable;
 	
-	public Album(String title,  String artist, Genre genre, Date releaseDate, boolean isAvailable) {
+	public Album(String title,  String artist, Genre genre, Date releaseDate,boolean isAvailable) {
 		this.title=title;
 		this.artist=artist;
 		this.genre=genre;
@@ -40,6 +40,10 @@ public class Album {
 			isAvailable=false;
 		else
 			isAvailable=true;
+	}
+	
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 }
 
