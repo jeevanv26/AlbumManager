@@ -37,7 +37,7 @@ public class CollectionManager {
 				isRunning=false;
 			}
 			else {
-				System.out.println("Collection Manager terminated.");
+				System.out.println("Invalid Command!");
 			}
 			if(isRunning) {
 				str = sc.nextLine();				//reads next line of input
