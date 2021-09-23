@@ -1,57 +1,99 @@
-import java.util.Calender
+import java.util.Calendar;
+
 public class Date implements Comparable<Date>{
-private int year;
-private int month;
-private int day;
+	private int year;
+	private int month;
+	private int day;
 
+	public Date(String date) { //take "mm/dd/yyyy" and create a Date object
+		String[] values = date.split("/");
 
-public Date(String date) { //take "mm/dd/yyyy" and create a Date object
-	String[] values = date.split("/");
-	this.year = values[2];
-	this.day = values[1];
-	this.month = values[0];
-	new Date(year, month-1, day);
-}
+		if(values.length != 3){
+			this.month = 0;
+			this.day = 0;
+			this.year = 0;
+			return;
+		}
 
-public Date() { //create an object with today's date ( see Calendar class)
-	Date today = new Date();
-	Calender current = Calender.getInstance();
-	current.setTime(today);
-	int currentYear = current.get(Calender.YEAR);
-	int currentMonth = current.get(Calender.MONTH);
-	int currentDay = current.get(Calender.DAY_OF_MONTH);
-}
+		this.year = Integer.valueOf(values[2]);
+		this.day = Integer.valueOf(values[1]);
+		this.month = Integer.valueOf(values[0]);
+	}
 
-public boolean isValid() {
-	public static final int QUADRENNIAL = 4;
-	public static final int CENTENNIAL = 100;
-	public static final int QUATERCENTENNIAL = 400;
-	public static final int THE_EIGHTYS = 1980;
+	public Date() { //create an object with today's date ( see Calendar class)
+		this.year = Calendar.getInstance().getTime().getYear() + 1900;
+		this.month = Calendar.getInstance().getTime().getMonth() + 1;
+		this.day = Calendar.getInstance().getTime().getDate();
 
-	if((day >  31 && month == 1 || 3 || 5 || 7 || 8 || 10 || 12) || (day > 30 && month = 4 || 6 || 9 || 11)){
-		return false;
-	}else if((month == 2) && (year % QUADRENNIAL == 0) && (year % CENTENNIAL == 0) && (year % QUATERCENTENNIAL == 0)){
-		if(day > 29){
+	}
+
+	public boolean isValid() {
+		final int THE_EIGHTYS = 1980;
+		final int QUADRENNIAL = 4;
+		final int CENTENNIAL = 100;
+		final int QUATERCENTENNIAL = 400;
+		final int THIRTYONE = 31;
+		final int THIRTY = 30;
+		final int TWENTYEIGHT = 28;
+		final int FEBLEAP = 29;
+
+		if(this.year < THE_EIGHTYS){
 			return false;
 		}
-	}else if(day > 28){
-		return false;
-	}else if(year < THE_EIGHTYS || year > currentYear){
-		return false;
-	}else if(year == currentYear && month > currentMonth){
-		return false;
-	}else if(year == currentYear && month == currentMonth && day > currentDay){
-		return false;
-	}else{
+
+		Date current = new Date();
+		if(this.year > current.year){
+			return false;
+		}else if((this.year == current.year) && (this.month > current.month)){
+			return false;
+		}else if((this.year == current.year) && (this.month == current.month) && (this.day > current.day)){
+			return false;
+		}
+
+		if(this.day < 1){
+			return false;
+		}
+
+		boolean leapYear = false;
+		if(this.year % QUADRENNIAL == 0){
+			if(this.year % CENTENNIAL == 0){
+				if(this.year % QUATERCENTENNIAL == 0){
+					leapYear = true;
+				}
+			}
+		}
+
+		if(this.month == 1 || this.month == 3 || this.month == 5 || this.month == 7 || this.month == 8 || this.month == 10 || this.month == 12){
+			if(this.day > THIRTYONE){
+				return false;
+			}
+		}else if(this.month == 4 || this.month == 6 || this.month == 9 || this.month == 11){
+			if(this.day > THIRTY){
+				return false;
+			}
+		}else if(this.month == 2){
+			if(leapYear == true){
+				if(this.day > FEBLEAP){
+					return false;
+				}
+			}else if(this.day > TWENTYEIGHT){
+				return false;
+			}
+		}
 		return true;
 	}
 
-
+	@Override
+	public int compareTo(Date date) {
+		return 1;
+	}
+	public static void main(String[] args){
+		Date testdate = new Date("2/16/2021");
+		if(testdate.isValid() == true){
+			System.out.println("pass");
+		}else {
+			System.out.println("fail");
+		}
+	}
 }
 
-@Override
-public int compareTo(Date date) {
-	
-}
-
-}
