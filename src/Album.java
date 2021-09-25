@@ -45,5 +45,17 @@ public class Album {
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public String getArtist() {
+		return artist;
+	}
+	public boolean getAvailability() {
+		return isAvailable;
+	}
+	
 }
 

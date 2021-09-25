@@ -30,8 +30,10 @@ public class Collection {
 		if(albums.length==numAlbums)
 			grow();
 		for(int x=0; x<albums.length; x++) {
-			if(albums[x]==null)
+			if(albums[x]==null) {
 				albums[x]=album;
+				break;
+			}
 		}
 		numAlbums++;
 		return true;
@@ -50,18 +52,22 @@ public class Collection {
 	}
 	
 	public boolean lendingOut(Album album) { // set to not available
+		if(find(album)==NOT_FOUND||album.getAvailability()==false)
+			return false;
 		album.changeAvailability();
 		return true;
 	}
 	
 	public boolean returnAlbum(Album album) { // set to available
+		if(find(album)==NOT_FOUND||album.getAvailability()==true)
+			return false;
 		album.changeAvailability();
 		return true;
 	}
 	
 	public void print() { // display the list without specifying the order
-		for (Album album:albums) {
-			System.out.print(album.toString());
+		for (int x=0; x<numAlbums; x++) {
+			System.out.print(albums[x].toString());
 		}
 	}
 	
@@ -82,12 +88,5 @@ public class Collection {
 		
 	}
 	
-	public Album[] getCollection() {
-		return albums;
-	}
-	
-	public int getNumAlbums() {
-		return numAlbums;
-	}
 	
 }
