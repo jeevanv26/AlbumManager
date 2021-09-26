@@ -30,9 +30,9 @@ public class Album {
 	@Override
 	public String toString() {
 		if(isAvailable==true)
-			return title+"::"+artist+"::"+genre+"::"+releaseDate+":: is available";
+			return title+"::"+artist+"::"+genre+"::"+releaseDate.toString()+":: is available";
 		else
-			return title+"::"+artist+"::"+genre+"::"+releaseDate+":: is not available";
+			return title+"::"+artist+"::"+genre+"::"+releaseDate.toString()+":: is not available";
 	}
 	
 	public void changeAvailability() {
@@ -57,5 +57,8 @@ public class Album {
 		return isAvailable;
 	}
 	
+	public Genre getGenre() {
+		return genre;
+	}
 }
 

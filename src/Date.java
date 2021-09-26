@@ -114,6 +114,11 @@ public class Date implements Comparable<Date>{
 		else
 			return 0;
 	}
+	
+	public String toString() {
+		return this.month+"/" +this.day+"/"+this.year;
+	}
+	
 	public static void main(String[] args){
 		Date testdate = new Date("2/16/2021");
 		if(testdate.isValid() == true){

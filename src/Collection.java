@@ -72,21 +72,49 @@ public class Collection {
 	}
 	
 	public void printByReleaseDate() {
-		
+		sortByReleaseDate();
+		print();
 	
 	}
 	
 	public void printByGenre() {
-		
+		sortByGenre();
+		print();
 	}
 	
 	public void sortByReleaseDate() {
-		
+		for(int x=0; x<numAlbums; x++){
+			int min=x;
+			for(int y=x; y<numAlbums; y++) {
+					if(albums[min].getReleaseDate().compareTo(albums[y].getReleaseDate())==1) 
+						min=y;	
+			}
+			Album temp=albums[x];
+			albums[x]=albums[min];
+			albums[min]=temp;
+		}
 	}
 	
 	public void sortByGenre() {
+		for(int x=0; x<numAlbums; x++){
+			int min=x;
+			for(int y=x; y<numAlbums; y++) {
+					if(albums[min].getGenre().compareTo(albums[y].getGenre())==1) 
+						min=y;	
+			}
+			Album temp=albums[x];
+			albums[x]=albums[min];
+			albums[min]=temp;
 		
+		}
+	
 	}
 	
+	public void initializeCollection() {
+		albums=new Album[1];
+	}
 	
+	public int returnNum() {
+		return numAlbums;
+	}
 }
