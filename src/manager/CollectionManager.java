@@ -1,6 +1,13 @@
+package manager;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+/**
+ * Creates user interface for managing an album
+ * by taking in various user commands which perform certain functions
+ * @author Jeevan Vasanthan, Noah Young 
+ */
 
 public class CollectionManager {
 	
@@ -10,6 +17,9 @@ public class CollectionManager {
 	boolean isRunning;
 	Scanner sc;
 	
+	/**
+	 * runs the collection manager by taking input from the console
+	 */
 	public void run() {
 		start();
 		while(isRunning) {
@@ -44,6 +54,9 @@ public class CollectionManager {
 		}
 	}
 	
+	/**
+	 * starts the collection manager
+	 */
 	public void start() {
 		System.out.println("Collection Manager starts running.");
 		 isRunning = true;
@@ -54,6 +67,9 @@ public class CollectionManager {
 		 st = new StringTokenizer(str,",");
 	}
 	
+	/**
+	 * add command in the collection manager
+	 */
 	public void add() {
 		if(st.countTokens() > 4)
 			System.out.println("Invalid command!");
@@ -88,6 +104,9 @@ public class CollectionManager {
 		}
 	}
 	
+	/**
+	 * delete command in the collection manager
+	 */
 	public void delete() {
 		if(st.countTokens() > 2)
 			System.out.println("Invalid command!");
@@ -100,6 +119,9 @@ public class CollectionManager {
 		}
 	}
 	
+	/**
+	 * lend command in the collection manager
+	 */
 	public void lend() {
 		if(st.countTokens() > 2)
 			System.out.println("Invalid command!");
@@ -111,7 +133,9 @@ public class CollectionManager {
 				System.out.println(a.getTitle()+"::"+a.getArtist()+" >> is not available.");
 		}
 	}
-	
+	/**
+	 * return command in the collection manager
+	 */
 	public void rtn() {
 		if(st.countTokens() > 2)
 			System.out.println("Invalid command!");
@@ -124,6 +148,9 @@ public class CollectionManager {
 		}
 	}
 	
+	/**
+	 * print in no order command in the collection manager
+	 */
 	public void printInNoOrder() {
 		if(collection.returnNum() == 0)
 			System.out.println("The collection is empty!");
@@ -133,7 +160,9 @@ public class CollectionManager {
 			System.out.println("*End of list");
 		}
 	}
-	
+	/**
+	 * print in order of release dates command in the collection manager
+	 */
 	public void printOrderReleaseDates() {
 		if(collection.returnNum() == 0)
 			System.out.println("The collection is empty!");
@@ -144,6 +173,9 @@ public class CollectionManager {
 		}
 	}
 	
+	/**
+	 * print in order of genres command in the collection manager
+	 */
 	public void printOrderGenre() {
 		if(collection.returnNum() == 0)
 			System.out.println("The collection is empty!");
@@ -154,6 +186,9 @@ public class CollectionManager {
 		}
 	}
 	
+	/**
+	 * exit command in the collection manager
+	 */
 	public void quit() {
 		System.out.println("Collection Manager terminated.");
 		sc.close();
