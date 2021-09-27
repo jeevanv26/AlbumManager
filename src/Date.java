@@ -11,33 +11,34 @@ public class Date implements Comparable<Date>{
 	public static final int THIRTYONE = 31;
 	public static final int THIRTY = 30;
 	public static final int TWENTYEIGHT = 28;
-	public static final int TWENTYNINE= 29;
-	public static final int JANUARY=1;
-	public static final int FEBRUARY=2;
-	public static final int MARCH=3;
-	public static final int APRIL=4;
-	public static final int MAY=5;
-	public static final int JUNE=6;
-	public static final int JULY=7;
-	public static final int AUGUST=8;
-	public static final int SEPTEMBER=9;
-	public static final int OCTOBER=10;
-	public static final int NOVEMBER=11;
-	public static final int DECEMBER=12;
+	public static final int TWENTYNINE = 29;
+	public static final int JANUARY = 1;
+	public static final int FEBRUARY = 2;
+	public static final int MARCH = 3;
+	public static final int APRIL = 4;
+	public static final int MAY = 5;
+	public static final int JUNE = 6;
+	public static final int JULY = 7;
+	public static final int AUGUST = 8;
+	public static final int SEPTEMBER = 9;
+	public static final int OCTOBER = 10;
+	public static final int NOVEMBER = 11;
+	public static final int DECEMBER = 12;
+	public static final int LOWESTDAY = 1;
 	
 	public Date(String date) { //take "mm/dd/yyyy" and create a Date object
 		String[] values = date.split("/");
 
 		if(values.length != 3){
-			this.month = 0;
-			this.day = 0;
-			this.year = 0;
-			return;
+			this.month = LOWESTDAY;
+			this.day = LOWESTDAY;
+			this.year = LOWESTDAY;
 		}
-
-		this.year = Integer.valueOf(values[2]);
-		this.day = Integer.valueOf(values[1]);
-		this.month = Integer.valueOf(values[0]);
+		else {
+			this.year = Integer.valueOf(values[2]);
+			this.day = Integer.valueOf(values[1]);
+			this.month = Integer.valueOf(values[0]);
+		}
 	}
 
 	public Date() { //create an object with today's date ( see Calendar class)
@@ -53,12 +54,14 @@ public class Date implements Comparable<Date>{
 			return false;
 		}
 		Date current = new Date();
-		if(this.compareTo(current)==1)
+		if(this.compareTo(current) == 1)
 			return false;
 		
-		if(this.day < 1){
+		if(this.day < LOWESTDAY )
 			return false;
-		}
+		
+		if(this.month < JANUARY || this.month > DECEMBER)
+			return false;
 		
 		boolean leapYear = false;
 		if(this.year % QUADRENNIAL == 0){
@@ -67,7 +70,7 @@ public class Date implements Comparable<Date>{
 					leapYear = true;
 			}
 			else
-				leapYear=true;	
+				leapYear = true;	
 		}
 
 		if(this.month == SEPTEMBER || this.month == MARCH || this.month == MAY|| this.month == JULY || this.month == AUGUST || this.month == OCTOBER || this.month == DECEMBER){
@@ -83,6 +86,10 @@ public class Date implements Comparable<Date>{
 		else if(this.month == FEBRUARY){
 			if(leapYear == true){
 				if(this.day > TWENTYNINE)
+					return false;
+			}
+			else {
+				if(this.day > TWENTYEIGHT)
 					return false;
 			}
 			
@@ -105,10 +112,10 @@ public class Date implements Comparable<Date>{
 		else if(this.year < date.year){
 			return -1;
 		}
-		else if((this.year == date.year) && (this.month <date.month)){
+		else if((this.year == date.year) && (this.month < date.month)){
 			return -1;
 		}
-		else if((this.year == date.year) && (this.month == date.month) && (this.day <date.day)){
+		else if((this.year == date.year) && (this.month == date.month) && (this.day < date.day)){
 			return -1;
 		}
 		else
@@ -120,7 +127,7 @@ public class Date implements Comparable<Date>{
 	}
 	
 	public static void main(String[] args){
-		Date testdate = new Date("2/16/2021");
+		Date testdate = new Date("1/16/2021");
 		if(testdate.isValid() == true){
 			System.out.println("pass");
 		}

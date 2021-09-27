@@ -11,17 +11,17 @@ public class Album {
 	private boolean isAvailable;
 	
 	public Album(String title,  String artist, Genre genre, Date releaseDate,boolean isAvailable) {
-		this.title=title;
-		this.artist=artist;
-		this.genre=genre;
-		this.releaseDate=releaseDate;
-		this.isAvailable=isAvailable;
+		this.title = title;
+		this.artist = artist;
+		this.genre = genre;
+		this.releaseDate = releaseDate;
+		this.isAvailable = isAvailable;
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		Album album=(Album)obj;
-		if(this.title.equals(album.title)&& artist.equals(album.artist))
+		Album album = (Album)obj;
+		if(this.title.equals(album.title) && this.artist.equals(album.artist))
 			return true;
 		else
 			return false;
@@ -29,17 +29,17 @@ public class Album {
 	
 	@Override
 	public String toString() {
-		if(isAvailable==true)
-			return title+"::"+artist+"::"+genre+"::"+releaseDate.toString()+":: is available";
+		if(isAvailable == true)
+			return title+"::"+artist+"::"+genre+"::"+releaseDate.toString()+"::is available";
 		else
-			return title+"::"+artist+"::"+genre+"::"+releaseDate.toString()+":: is not available";
+			return title+"::"+artist+"::"+genre+"::"+releaseDate.toString()+"::is not available";
 	}
 	
 	public void changeAvailability() {
-		if(isAvailable==true)
-			isAvailable=false;
+		if(isAvailable == true)
+			isAvailable = false;
 		else
-			isAvailable=true;
+			isAvailable = true;
 	}
 	
 	public Date getReleaseDate() {
